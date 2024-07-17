@@ -72,7 +72,7 @@ const HomePage = () => {
       try {
         const user = JSON.parse(localStorage.getItem('user'))
         setLoading(true)
-        const res = await axios.post('/transections/get-transection', {
+        const res = await axios.post('https://backendmern-ds68.onrender.com/transections/get-transection', {
           userid: user._id,
           frequency,
           selectedDate,
@@ -95,7 +95,7 @@ const HomePage = () => {
   const handleDelete = async (record) => {
     try {
       setLoading(true);
-      await axios.post("/transections/delete-transection", {
+      await axios.post("https://backendmern-ds68.onrender.com/transections/delete-transection", {
         transacationId: record._id,
       });
       setLoading(false);
@@ -114,7 +114,7 @@ const HomePage = () => {
       const user = JSON.parse(localStorage.getItem('user'))
       setLoading(true)
       if (editable) {
-        await axios.post("/transections/edit-transection", {
+        await axios.post("https://backendmern-ds68.onrender.com/transections/edit-transection", {
           payload: {
             ...values,
             userId: user._id,
@@ -124,7 +124,7 @@ const HomePage = () => {
         setLoading(false);
         message.success("Transaction Updated Successfully");
       }else{
-        await axios.post('/transections/add-transection', { ...values, userid: user._id });
+        await axios.post('https://backendmern-ds68.onrender.com/transections/add-transection', { ...values, userid: user._id });
         setLoading(false)
         message.success('Transection Added successfully');
       }
